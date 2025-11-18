@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Sprint</title>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;500;700&family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/global.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <header class="container">
+        <div class="logo">
+            <h1>Task Sprint</h1>
+        </div>
+        <div class="header-controls">
+            <input type="text" id="search" placeholder="Search tasks...">
+            
+            <!-- <select id="sort">
+                <option value="default">Sort by</option>
+                <option value="asc">Due Date ↑</option>
+                <option value="desc">Due Date ↓</option>
+            </select> -->
+         
+            <button id="themeToggle" class="icon-btn"><i id="themeIcon" class="fas fa-sun"></i></button>
+            
+            <button id="add-task-btn" class="add-btn"> <i class="fa-solid fa-plus"></i>Add Task</button>
+        </div>
+    </header>
+    <main>
+        <section class="container">
+            <div class="task-box">
+                <ul id="task-list">
+                    <!-- list items from javascript-->
+                </ul>
+
+            </div>
+        </section>
+
+        <section>
+            <!-- ADD TASK MODAL -->
+            <div id="addModal" class="modal">
+                <div class="modal-content">
+                    <h2>Add New Task</h2>
+
+                    <input type="text" id="add-title" placeholder="Title">
+                    <textarea id="add-description" placeholder="Description (optional)"></textarea>
+                    <input type="datetime-local" id="add-due">
+
+                    <div class="modal-actions">
+                        <!-- <button id="closeAddModal" class="btn-cancel">Cancel</button> -->
+                        <button id="saveAddModal" class="btn-primary">Add Task</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDIT TASK MODAL -->
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <h2>Edit Task</h2>
+
+                    <input type="text" id="edit-title">
+                    <textarea id="edit-description"></textarea>
+                    <input type="datetime-local" id="edit-due">
+
+                    <div class="modal-actions">
+                        <button id="closeEditModal" class="btn-cancel">Cancel</button>
+                        <button id="saveEditModal" class="btn-primary">Update</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Modal -->
+            <div id="delete-modal" class="modal">
+                <div class="modal-content">
+                    <p>Are you sure you want to delete this task?</p>
+                    <button id="confirm-delete">Yes, Delete</button>
+                    <button id="cancel-delete">Cancel</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="container">
+        <div class="task-footer">
+            <span id="items-left">0 items left</span>
+
+            <div class="filters">
+                <button class="fiter-btn active" >All</button>
+                <button class="fiter-btn " >Active</button>
+                <button class="fiter-btn">Completed</button>
+            </div>
+    
+            <button id="clear-completed" class="clear-btn">Clear Completed</button>
+        </div>
+        <p class="drag-text">Drag and drop to reorder list</p>
+    </footer>
+    <script src="assets/script.js"></script>
+</body>
+</html>
