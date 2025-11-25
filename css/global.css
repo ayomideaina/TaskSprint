@@ -1,0 +1,140 @@
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* Add accessible line-height */
+  line-height: 1.5;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/*Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+/* Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+/* Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:root {
+  --bg: #171823;
+  --text: #fff;
+  --card: #25273c;
+  --input-bg: #2a2c43;
+  --border: #3a3c57;
+  --primary: #4a63e7;
+  --clearbtn:#ff3b3b;
+  --btn:#a3a4c0;
+  
+  --logo-gradient: linear-gradient(135deg, #4a63e7 0%, #7b68ee 50%, #ff6b9d 100%);
+}
+
+.light-mode{
+  --bg: #f2f2f2;
+  --text: #222;
+  --card: #fff;
+  --input-bg: #fff;
+  --border: #ddd;
+  --primary: #4a63e7;
+  --btn:#888888;
+
+  --logo-gradient: linear-gradient(135deg, #4a63e7 0%, #5f7fff 50%, #ff6b9d 100%);
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  background: var(--bg);
+  margin: 0;
+  color: var(--text);
+}
+
+.container {
+  width: 90%;
+  max-width: 650px;
+  margin: 80px auto 0;
+}
+
+/* modal for delet and edit  */
+.modal-edit, .modal-del {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-edit.show, .modal-del.show {
+  display: flex;
+}
+
+.edit-content, .delet-content {
+  background: var(--card);
+  padding: 1.3rem;
+  width: 350px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.modal-edit input,
+.modal-content textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+
+/* media queries*/
+@media (max-width: 600px) {
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-controls {
+    width: 100%;
+    flex-direction: column;
+    
+  }
+
+  .header-controls input {
+    margin-top: 1.25rem;
+    width: 80%;
+  }
+
+  .header-buttons {
+    width: 100%;
+    justify-content:center; 
+  }
+
+  .icon-btn,
+  .add-btn {
+    width: auto; 
+  }
+}
