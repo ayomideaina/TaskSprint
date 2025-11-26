@@ -9,7 +9,10 @@ const descInput = document.getElementById('add-description');
 const dueInput = document.getElementById('add-due');
 const errorMsg = document.getElementById('add-error');
 
-const API_URL = "http://localhost:3000/todos";
+const API_URL = "https://todo-endpoint.onrender.com/todos";
+// const API_URL = "http://localhost:3000/todos";
+
+
 
 const editModal = document.getElementById("editModal");
 const editTitle = document.getElementById("edit-title");
