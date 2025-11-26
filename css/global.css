@@ -108,6 +108,9 @@ body {
   color: var(--text);
 }
 
+.task-item.overdue .task-date {
+  color: orange;
+}
 
 /* media queries*/
 @media (max-width: 600px) {
@@ -136,5 +139,11 @@ body {
   .icon-btn,
   .add-btn {
     width: auto; 
+  }
+
+  .task-footer{
+    flex-direction: column;
+    /* align-items: flex-start; */
+    gap: 0.5rem;
   }
 }

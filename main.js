@@ -11,7 +11,6 @@ const errorMsg = document.getElementById('add-error');
 
 const API_URL = "http://localhost:3000/todos";
 
-// EDIT MODAL ELEMENTS
 const editModal = document.getElementById("editModal");
 const editTitle = document.getElementById("edit-title");
 const editDesc = document.getElementById("edit-description");
@@ -21,26 +20,13 @@ const closeEditModal = document.getElementById("closeEditModal");
 
 let currentEditId = null;
 
-// DELETE MODAL ELEMENTS
 const deleteModal = document.getElementById("deleteModal");
 const confirmDeleteBtn = document.getElementById("confirm-delete");
 const cancelDeleteBtn = document.getElementById("cancel-delete");
 
 let currentDeleteId = null;
 
-
-// fetches to do
-async function fetchTodos() {
-  try {
-    const res = await fetch(API_URL);
-    const todos = await res.json();
-    renderTodos(todos);
-  } catch (error) {
-    console.error("Failed to fetch todos:", error);
-  }
-}
-
-// theme
+//theme
 if (localStorage.getItem('theme') === 'light') {
   body.classList.add('light-mode');
   themeIcon.className = 'fas fa-moon';
@@ -65,16 +51,25 @@ function toggleEmptyState() {
   }
 }
 
+// READ/GET METHOD: fetchTodos()
+async function fetchTodos() {
+  try {
+    const res = await fetch(API_URL);
+    const todos = await res.json();
+    renderTodos(todos);
+  } catch (error) {
+    console.error("Failed to fetch todos:", error);
+  }
+}
 
 // to open the add task modal
 addBtn.addEventListener('click', () =>{
   addModal.classList.add('show');
 });
 
-
 addModal.addEventListener("click", (e) => {
   if (e.target === addModal) {
-      addModal.classList.remove("show");
+    addModal.classList.remove("show");
   }
 });
 
@@ -88,7 +83,7 @@ function clearErrorIfValid() {
 titleInput.addEventListener('input', clearErrorIfValid);
 dueInput.addEventListener('input', clearErrorIfValid);
 
-
+// create tasks (POST)
 saveAddBtn.addEventListener("click", () => {
   const title = titleInput.value.trim();
   const due = dueInput.value.trim();
@@ -103,7 +98,6 @@ saveAddBtn.addEventListener("click", () => {
   }
   errorMsg.classList.add('hide-error');
 
-  // create tasks (POST)
   async function addTodo() {
     const newTodo = {
       title: titleInput.value.trim(),
@@ -134,25 +128,13 @@ saveAddBtn.addEventListener("click", () => {
     dueInput.value = "";
 });
 
-function showNotification(message, type = "success") {
-  const container = document.getElementById("notification-container");
 
-  const notification = document.createElement("div");
-  notification.className = `notification ${type}`;
-  notification.textContent = message;
-
-  container.appendChild(notification);
-
-  setTimeout(() => {
-    notification.remove();
-  }, 3500);
-}
-
-
-// function to display all tasks added in the task list in Html
+// function to display all tasks added in the task list
 function renderTodos(todos) {
   const list = document.getElementById("task-list");
   list.innerHTML = "";
+
+  const now = new Date();
 
   todos.forEach(todo => {
     const li = document.createElement("li");
@@ -162,6 +144,19 @@ function renderTodos(todos) {
     li.dataset.completed = todo.completed;
 
     if (todo.completed) li.classList.add("completed");
+
+    let dueDateHTML = "";
+
+    if (todo.dueDate) {
+      const dueDate = new Date(todo.dueDate);
+
+      // Overdue
+      if (!todo.completed && dueDate < now) {
+        li.classList.add("overdue");
+      }
+      
+      dueDateHTML = `<span class="task-date">Due: ${dueDate.toLocaleString()}</span>`;
+    }
 
     li.innerHTML = `
       <div class="task-left">
@@ -197,7 +192,7 @@ function renderTodos(todos) {
 
 }
 
-// function to edit To do
+// function to edit To-do
 function toEditTask() {
   document.querySelectorAll(".edit-btn").forEach(btn => {
     btn.addEventListener("click", async () => {
@@ -217,7 +212,7 @@ function toEditTask() {
 }
 
 
-// to save edit
+//Update to-do tasks/ PUT method
 saveEditBtn.addEventListener("click", async () => {
   await fetch(`${API_URL}/${currentEditId}`, {
     method: "PUT",
@@ -238,8 +233,7 @@ closeEditModal.addEventListener("click", () => {
   editModal.classList.remove("show");
 });
 
-
-//to delete
+//Delete TO-DO
 function toDeleteTask() {
   document.querySelectorAll(".delete-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -253,7 +247,6 @@ cancelDeleteBtn.addEventListener("click", () => {
   deleteModal.classList.remove("show");
 });
 
-// Delete Method 
 confirmDeleteBtn.addEventListener("click", async () => {
   await fetch(`${API_URL}/${currentDeleteId}`, { method: "DELETE" });
 
@@ -262,7 +255,23 @@ confirmDeleteBtn.addEventListener("click", async () => {
   fetchTodos();
 });
 
-// Function to tick to do as completed
+// function to show success notification
+function showNotification(message, type = "success") {
+  const container = document.getElementById("notification-container");
+
+  const notification = document.createElement("div");
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
+
+  container.appendChild(notification);
+
+  setTimeout(() => {
+    notification.remove();
+  }, 3500);
+}
+
+
+//Tick to-do as completed
 function handleCompleteToggle() {
   document.querySelectorAll(".circle-btn").forEach(circle => {
     circle.addEventListener("click", async () => {
@@ -283,10 +292,11 @@ function handleCompleteToggle() {
 }
 
 
+// Filter tasks
 document.querySelector(".filters").addEventListener("click", e => {
-  if (!e.target.classList.contains("fiter-btn")) return;
+  if (!e.target.classList.contains("filter-btn")) return;
 
-  document.querySelectorAll(".fiter-btn").forEach(btn => btn.classList.remove("active"));
+  document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
   e.target.classList.add("active");
 
   const filter = e.target.textContent.trim();

@@ -76,7 +76,7 @@ header .logo h1 {
 }
 
 .empty-state {
-  /* text-align: center; */
+  text-align: center;
   padding: 2.5rem 1.3rem;
   opacity: 0.7;
   gap: 1.2rem;
@@ -89,11 +89,11 @@ header .logo h1 {
 .empty-state i {
   font-size: 40px;
   margin-bottom: 10px;
-  display: block;
+  /* display: block; */
 }
 
 .empty-state p {
-  font-size: 16px;
+  font-size: 1rem;
   margin-top: 10px;
 }
 
@@ -248,7 +248,7 @@ header .logo h1 {
   align-items: center;
 }
 
-.fiter-btn{
+.filter-btn{
   background-color: var(--bg);
   color:var(--btn);
   border: none;
@@ -257,10 +257,10 @@ header .logo h1 {
   cursor: pointer;
 }
 
-.fiter-btn:hover{
+.filter-btn:hover{
   color: var(--text);
 }
-.fiter-btn.active{
+.filter-btn.active{
   color: var(--primary);
 }
 

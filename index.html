@@ -34,14 +34,14 @@
     <main>
         <section class="container">
             <div class="task-box">
-                <ul id="task-list">
-                    <!-- list items from javascript-->
-                </ul>
-
                 <div id="empty-state" class="empty-state" >
                     <i class="fa-solid fa-note-sticky"></i>
                     <p>No tasks yet. Add one above to get started!</p>
                 </div>
+
+                <ul id="task-list">
+                    <!-- list items will be added here -->
+                </ul>
             </div>
         </section>
 
@@ -58,7 +58,6 @@
                     <p id="add-error" class="hide-error"></p>
 
                     <div class="modal-actions">
-                        <!-- <button id="closeAddModal" class="btn-cancel">Cancel</button> -->
                         <button id="saveAddModal" class="btn-primary">Add Task</button>
                     </div>
 
@@ -93,7 +92,6 @@
             <div id="notification-container"></div>
         </section>
 
-
     </main>
 
     <!-- FOOTER -->
@@ -101,9 +99,9 @@
         <div class="task-footer">
     
             <div class="filters">
-                <button class="fiter-btn active" >All</button>
-                <button class="fiter-btn " >Active</button>
-                <button class="fiter-btn">Completed</button>
+                <button class="filter-btn active" >All</button>
+                <button class="filter-btn " >Active</button>
+                <button class="filter-btn">Completed</button>
             </div>
     
             <button id="clear-completed" class="clear-btn">Clear Completed</button>
