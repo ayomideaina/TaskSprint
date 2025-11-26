@@ -1,0 +1,39 @@
+Task Sprint – To-Do List Application
+A simple and interactive to-do list application that allows users to create, edit, delete, and manage tasks with a clean UI and full backend API integration.
+
+
+How to Run the App
+1. clone or download the project
+2. install the dependencies for backend by running npm install in your project folder
+3. start the server using node server.js
+4. Then open live server to display the frontend on browser
+
+
+Technologies Used:
+
+Frontend
+HTML5
+CSS3
+JavaScript (Vanilla JS)
+
+
+Backend
+Node.js
+Express.js
+
+
+Key Features Implemented
+
+CRUD Operations
+1. Create new tasks: Users can add new to-dos with title, description and due date & time. A modal form is used for clean UI.
+2. Read: All tasks are fetched from the backend and displayed
+3. Update tasks: users can edit task title, description, due date. Changes are saved to the backend and reflected instantly
+4. Delete: when users click on delete, a confirmation modal pops up.
+
+other operations
+1. when users ticks the task, it marks as completed and updates on the backend
+2. users can filter tasks All / Active / Completed and clear all completed tasks
+3. Tasks whose due date has passed display the due date in red.
+4. Notifications: Success notifications for all actions:Add, Update, Delete
+5. Dark/Light theme toggle.
+
