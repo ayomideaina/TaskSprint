@@ -158,7 +158,7 @@ const renderTodos = (todos) => {
       // Due soon 
       else if (daysLeft <= 2) {
         li.classList.add("due-soon");
-        showNotification(`${todo.title} is due soon!`);
+        // showNotification(`${todo.title} is due soon!`);
       }
     }
 
@@ -299,7 +299,7 @@ document.getElementById("clear-completed").addEventListener("click", async () =>
   fetchTodos();
 });
 
-
+// show success notification
 const showNotification = (message, type = "success") => {
   const container = document.getElementById("notification-container");
 

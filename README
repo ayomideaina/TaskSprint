@@ -36,4 +36,5 @@ other operations
 3. Tasks whose due date has passed display the due date in red.
 4. Notifications: Success notifications for all actions:Add, Update, Delete
 5. Dark/Light theme toggle.
+6. Tasks with due date in two days display the due date in orange.
 

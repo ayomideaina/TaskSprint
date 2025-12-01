@@ -286,10 +286,10 @@ header .logo h1 {
 }
 
 .notification {
-  padding:0.75rem 1.125rem;
+  padding:0.75rem 1rem;
   color: #fff;
   border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   opacity: 0;
   transform: translateY(-20px);
   animation: slideIn 0.4s forwards, fadeOut 0.4s 3s forwards;
