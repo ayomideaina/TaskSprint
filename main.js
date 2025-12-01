@@ -215,7 +215,7 @@ function toEditTask() {
 }
 
 
-//Update to-do tasks/ PUT method
+//Update to-do tasks
 saveEditBtn.addEventListener("click", async () => {
   await fetch(`${API_URL}/${currentEditId}`, {
     method: "PUT",

@@ -109,9 +109,14 @@ body {
 }
 
 .task-item.overdue .task-date {
-  color: orange;
+  color: #ff3b3b;
+  font-size: .8125rem;
 }
 
+.task-item.due-soon .task-date {
+  color: orange;
+  font-size: .8125rem;
+}
 /* media queries*/
 @media (max-width: 600px) {
 
