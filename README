@@ -1,8 +1,9 @@
-## Task Sprint – To-Do List Application
+Task Sprint – To-Do List Application
+
 A simple and interactive to-do list application that allows users to create, edit, delete, and manage tasks with a clean UI and full backend API integration.
 
 
-# How to Run the App
+ How to Run the App
 1. clone or download the project 
 backend: https://github.com/ayomideaina/todo_backend.git
 frontend: https://github.com/ayomideaina/TaskSprint.git
@@ -11,20 +12,20 @@ frontend: https://github.com/ayomideaina/TaskSprint.git
 4. Then open live server to display the frontend on browser
 
 
-# Technologies Used:
+Technologies Used:
 
-*Frontend*
+Frontend
 HTML5
 CSS3
 JavaScript (Vanilla JS)
 
 
-*Backend*
+Backend
 Node.js
 Express.js
 
 
-# Key Features Implemented
+Key Features Implemented
 
 CRUD Operations
 1. Create new tasks: Users can add new to-dos with title, description and due date & time. A modal form is used for clean UI.
