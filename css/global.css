@@ -115,6 +115,7 @@ body {
 .task-item.due-soon .task-date {
   color: orange;
 }
+
 /* media queries*/
 @media (max-width: 600px) {
 

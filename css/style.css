@@ -241,6 +241,8 @@ header .logo h1 {
   cursor: pointer;
 }
 
+
+
 .task-footer {
   margin-block: 0.9rem;
   display: flex;
@@ -316,4 +318,17 @@ header .logo h1 {
     opacity: 0;
     transform: translateY(-20px);
   }
+}
+
+
+.notification.loading {
+  background: #7cbbe6;
+  font-weight: 600;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: .5; }
+  50% { opacity: 1; }
+  100% { opacity: .5; }
 }

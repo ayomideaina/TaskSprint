@@ -77,7 +77,7 @@ addModal.addEventListener("click", (e) => {
   }
 });
 
-// Clear error while typing
+// Clear error message when inputs are valid
 const clearErrorIfValid = () => {
   if (titleInput.value.trim() && dueInput.value.trim()) {
     errorMsg.textContent = "";
@@ -108,12 +108,15 @@ const addTodo = async () => {
   };
 
   try {
+    showLoading("Adding task...");
+
     await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTodo)
     });
 
+    hideLoading();
     showNotification("Task added successfully");
     addModal.classList.remove("show");
 
@@ -121,6 +124,7 @@ const addTodo = async () => {
     descInput.value = "";
     dueInput.value = "";
 
+    
     fetchTodos();
   } catch (err) {
     console.error("Add failed:", err);
@@ -128,6 +132,14 @@ const addTodo = async () => {
 };
 
 saveAddBtn.addEventListener("click", addTodo);
+
+const formatDateTime = (value) => {
+  const date = new Date(value);
+  return date.toLocaleString([], {
+    dateStyle: "medium",
+    timeStyle: "short"
+  });
+};
 
 
 // RENDER TODOS/to display all tasks added in the task list
@@ -171,7 +183,7 @@ const renderTodos = (todos) => {
         <div class="task-info">
           <h3 class="task-title">${todo.title}</h3>
           ${todo.description ? `<p class="task-desc">${todo.description}</p>` : ""}
-          ${todo.dueDate ? `<span class="task-date">Due: ${todo.dueDate}</span>` : ""}
+          ${todo.dueDate ? `<span class="task-date">Due: ${formatDateTime(todo.dueDate)}</span>` : ""}
         </div>
       </div>
 
@@ -190,7 +202,7 @@ const renderTodos = (todos) => {
   toggleEmptyState();
 };
 
-// EDIT REQUEST
+// EDIT To-do
 const toEditTask = () => {
   document.querySelectorAll(".edit-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
@@ -209,6 +221,8 @@ const toEditTask = () => {
 };
 
 saveEditBtn.addEventListener("click", async () => {
+  showLoading("Updating task...");
+
   await fetch(`${API_URL}/${currentEditId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -220,6 +234,8 @@ saveEditBtn.addEventListener("click", async () => {
   });
 
   editModal.classList.remove("show");
+
+  hideLoading();
   showNotification("Task updated");
   fetchTodos();
 });
@@ -240,9 +256,14 @@ const toDeleteTask = () => {
 cancelDeleteBtn.addEventListener("click", () => deleteModal.classList.remove("show"));
 
 confirmDeleteBtn.addEventListener("click", async () => {
+
+  showLoading("Deleting task...");
+
   await fetch(`${API_URL}/${currentDeleteId}`, { method: "DELETE" });
 
   deleteModal.classList.remove("show");
+
+  hideLoading();
   showNotification("Task deleted");
   fetchTodos();
 });
@@ -299,17 +320,34 @@ document.getElementById("clear-completed").addEventListener("click", async () =>
   fetchTodos();
 });
 
+// show loading indicator
+const showLoading = (message = "Loading...") => {
+  const container = document.getElementById("notification-container");
+
+  const isLoading = document.createElement("div");
+  isLoading.className = "notification loading";
+  isLoading.id = "loadingBox";
+  isLoading.textContent = message;
+
+  container.appendChild(isLoading);
+};
+
+const hideLoading = () => {
+  const isLoading = document.getElementById("loadingBox");
+  if (isLoading) isLoading.remove();
+};
+
 // show success notification
 const showNotification = (message, type = "success") => {
   const container = document.getElementById("notification-container");
 
-  const box = document.createElement("div");
-  box.className = `notification ${type}`;
-  box.textContent = message;
+  const notification = document.createElement("div");
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
 
-  container.appendChild(box);
+  container.appendChild(notification);
 
-  setTimeout(() => box.remove(), 3000);
+  setTimeout(() => notification.remove(), 3500);
 };
 
 window.addEventListener("DOMContentLoaded", fetchTodos);
